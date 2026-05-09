@@ -1,0 +1,7 @@
+/**
+ * Suit.java - Represents enumeration attributes
+ * for the unchanging suit values of cards
+ */
+public enum Suit {
+    HEARTS, DIAMONDS, CLUBS, SPADES
+}

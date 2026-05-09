@@ -1,0 +1,29 @@
+UD1 Project Requirements: You must use at least 1 of the following topics thoughtfully in your project and provide an
+explanation of why the others are not necessary:
+- Abstract class
+- Inner class
+- Custom exception
+
+Abstract Class — Player (INCLUDED IN PROJECT)
+Player is designed as an abstract class because it holds shared state and behavior that both HumanPlayer and AIPlayer
+need — specifically the name field, the hand ArrayList, and concrete methods like addCard(), getHandSize(), and
+removeCard(). At the same time, the chooseCard() method must behave differently depending on the player type: a
+HumanPlayer's card selection will be driven by the GUI, while an AIPlayer selects automatically. Making chooseCard()
+abstract forces every subclass to provide its own implementation, and it lets the WarGame class call chooseCard()
+on any Player reference without knowing or caring which subclass it's actually working with. In my opinion here, that's
+polymorphism doing exactly what it's supposed to do.
+
+Custom Exception — EmptyDeckException (INCLUDED IN PROJECT)
+When a player runs out of cards mid-round — especially during a war scenario where multiple cards are drawn at once — a
+generic RuntimeException or IndexOutOfBoundsException would give no useful context about what actually went wrong.
+EmptyDeckException is a custom checked exception I'm adding that carries a descriptive message identifying which
+player's hand was empty and at what point in the game it happened. This makes debugging easier during development and
+allows the WarGame class to catch it explicitly and handle the "end-of-game" condition gracefully rather than just
+crashing.
+
+Why Not an Inner Class (NOT INCLUDED IN PROJECT)
+An inner class is most useful when a class only has meaning inside the scope of another class, like a Node inside a
+LinkedList. In this project, every class is independently meaningful and used by multiple other classes. PlayingCard is
+my strongest example — if it were an inner class of Deck, then Player, WarGame, and GameState would all need to reach
+through Deck just to reference a card. That kind of coupling makes my code harder to read and harder to maintain.
+Keeping all classes top-level follows the single-responsibility principle and helps keep the design clean.
