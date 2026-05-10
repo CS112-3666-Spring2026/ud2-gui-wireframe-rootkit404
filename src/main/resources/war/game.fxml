@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="550.0" prefWidth="700.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="war.controllers.GameController"
+            style="-fx-background-color: #1a5c2a;">
+
+    <!-- TOP BAR: Title + Menu Buttons -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10"
+              style="-fx-background-color: #0f3d1a; -fx-padding: 12 16 12 16;">
+            <Label text="War! Card Game"
+                   style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="newGameButton" text="New Game" onAction="#handleNewGame" />
+            <Button fx:id="saveButton" text="Save" onAction="#handleSave" />
+            <Button fx:id="loadButton" text="Load" onAction="#handleLoad" />
+        </HBox>
+    </top>
+
+    <!-- CENTER: Main Game Area -->
+    <center>
+        <VBox alignment="CENTER" spacing="16">
+            <padding>
+                <Insets top="20" bottom="16" left="40" right="40" />
+            </padding>
+
+            <!-- Player Names + Card Counts -->
+            <HBox alignment="CENTER" spacing="180">
+                <VBox alignment="CENTER">
+                    <Label fx:id="p1NameLabel" text="Player 1 (You)"
+                           style="-fx-text-fill: white; -fx-font-size: 15; -fx-font-weight: bold;" />
+                    <Label fx:id="p1CardCountLabel" text="Cards: 26"
+                           style="-fx-text-fill: #cccccc; -fx-font-size: 12;" />
+                </VBox>
+                <VBox alignment="CENTER">
+                    <Label fx:id="p2NameLabel" text="Player 2 (CPU)"
+                           style="-fx-text-fill: white; -fx-font-size: 15; -fx-font-weight: bold;" />
+                    <Label fx:id="p2CardCountLabel" text="Cards: 26"
+                           style="-fx-text-fill: #cccccc; -fx-font-size: 12;" />
+                </VBox>
+            </HBox>
+
+            <!-- Card Display Area -->
+            <HBox alignment="CENTER" spacing="32">
+
+                <!-- Player 1 Card -->
+                <VBox alignment="CENTER" spacing="6">
+                    <Label fx:id="p1CardDisplay" text="?"
+                           prefWidth="110" prefHeight="155" alignment="CENTER"
+                           style="-fx-background-color: white; -fx-border-color: #444444;
+                                  -fx-border-width: 2; -fx-border-radius: 8;
+                                  -fx-background-radius: 8; -fx-font-size: 14;
+                                  -fx-font-weight: bold;" />
+                    <Label text="Your Card"
+                           style="-fx-text-fill: #bbbbbb; -fx-font-size: 11;" />
+                </VBox>
+
+                <!-- VS + Status -->
+                <VBox alignment="CENTER" spacing="10" prefWidth="180">
+                    <Label text="VS"
+                           style="-fx-text-fill: #ffcc00; -fx-font-size: 24; -fx-font-weight: bold;" />
+                    <Label fx:id="statusLabel"
+                           text="Click 'Draw Card' to begin!"
+                           wrapText="true" alignment="CENTER" prefWidth="180"
+                           style="-fx-text-fill: white; -fx-font-size: 12;
+                                  -fx-text-alignment: center;" />
+                </VBox>
+
+                <!-- Player 2 Card -->
+                <VBox alignment="CENTER" spacing="6">
+                    <Label fx:id="p2CardDisplay" text="?"
+                           prefWidth="110" prefHeight="155" alignment="CENTER"
+                           style="-fx-background-color: white; -fx-border-color: #444444;
+                                  -fx-border-width: 2; -fx-border-radius: 8;
+                                  -fx-background-radius: 8; -fx-font-size: 14;
+                                  -fx-font-weight: bold;" />
+                    <Label text="CPU's Card"
+                           style="-fx-text-fill: #bbbbbb; -fx-font-size: 11;" />
+                </VBox>
+
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" spacing="16">
+                <padding>
+                    <Insets top="8" />
+                </padding>
+                <Button fx:id="drawButton" text="Draw Card" onAction="#handleDraw"
+                        prefWidth="150" prefHeight="38"
+                        style="-fx-font-size: 14; -fx-font-weight: bold;" />
+                <Button fx:id="resolveWarButton" text="Resolve War" onAction="#handleResolveWar"
+                        prefWidth="150" prefHeight="38"
+                        style="-fx-font-size: 14;" />
+            </HBox>
+
+        </VBox>
+    </center>
+
+    <!-- BOTTOM: Score Bar -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="24"
+              style="-fx-background-color: #0f3d1a; -fx-padding: 10 16 10 16;">
+            <Label fx:id="roundLabel" text="Round: 0"
+                   style="-fx-text-fill: white; -fx-font-size: 12;" />
+            <Separator orientation="VERTICAL" prefHeight="14" />
+            <Label fx:id="p1WinsLabel" text="P1 Wins: 0"
+                   style="-fx-text-fill: white; -fx-font-size: 12;" />
+            <Separator orientation="VERTICAL" prefHeight="14" />
+            <Label fx:id="p2WinsLabel" text="P2 Wins: 0"
+                   style="-fx-text-fill: white; -fx-font-size: 12;" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
